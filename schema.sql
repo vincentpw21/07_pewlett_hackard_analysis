@@ -31,13 +31,12 @@ CREATE TABLE salaries (
 	salary int NOT NULL,
 	from_date date NOT NULL,
 	to_date date NOT NULL,
-	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
-	PRIMARY KEY (emp_no)
+	FOREIGN KEY (emp_no) REFERENCES employees (emp_no)
 );
 
 CREATE TABLE dept_emp (
-	dept_no varchar(4) NOT NULL,
 	emp_no int NOT NULL,
+	dept_no varchar NOT NULL,
 	from_date date NOT NULL,
 	to_date date NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
@@ -50,7 +49,21 @@ CREATE TABLE titles (
 	from_date date NOT NULL,
 	to_date date NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
-	PRIMARY KEY(title,from_date)
+	PRIMARY KEY(emp_no,title,from_date)
 );
 
+-- gut check tables
 SELECT * FROM departments;
+SELECT * FROM dept_emp;
+SELECT * FROM dept_manager;
+SELECT * FROM titles;
+SELECT * FROM salaries;
+SELECT * FROM employees;
+
+-- reference commands to drop tables
+DROP TABLE dept_emp
+DROP TABLE dept_manager
+DROP TABLE departments
+DROP TABLE titles
+DROP TABLE salaries
+DROP TABLE employees
